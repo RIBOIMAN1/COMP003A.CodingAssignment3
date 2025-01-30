@@ -17,6 +17,10 @@ namespace COMP003A.CodingAssignment3
             Console.WriteLine("3. Remove an Expense");
             Console.WriteLine("4. Exit");
             Console.Write("Enter your choice: ");
+            Console.WriteLine("\n\nExpenses:");
+            Console.WriteLine("- Rent: $");
+            Console.WriteLine("Total Expenses: $");
+            Console.WriteLine("Remaining Budget: $");
         }
     }
 }
