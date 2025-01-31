@@ -26,35 +26,64 @@ namespace COMP003A.CodingAssignment3
             double monthlyIncome = double.Parse(Console.ReadLine());
             while (true)
             {
-            Console.WriteLine("\nMenu:");
-            Console.WriteLine("1. Add an Expense");
-            Console.WriteLine("2. View Expenses and Budget");
-            Console.WriteLine("3. Remove an Expense");
-            Console.WriteLine("4. Exit");
-            Console.Write("Enter your choice: ");
-            int choice = int.Parse(Console.ReadLine());
-            switch (choice)
-            {
-                case 1:
-                    Console.Write("Enter the expense name: ");
-                    expense1name = Console.ReadLine();
-                    Console.Write("Enter the expense amount: ");
-                    expenseAmount = double.Parse(Console.ReadLine());
-                    Console.WriteLine("Expense added successfully!");
-                    break;
-                case 2:
-                    Console.WriteLine("\nExpenses:");
-                    Console.WriteLine($"- {expense1name}: {expense1}");
-                    Console.WriteLine($"Total Expenses: {expense1 + expense2 + expense3 + expense4 + expense5}");
-                    Console.WriteLine($"Remaining Budget: ${monthlyIncome - (expense1 + expense2 + expense3 + expense4 + expense5)}");
-                    break;
-                case 3:
-                    Console.Write("Enter the name of the expense you want to remove: ");
-                    Console.ReadLine();
-                    break;
-                case 4:
-                    Console.WriteLine("Goodbye!");
-                    return;
+                Console.WriteLine("\nMenu:");
+                Console.WriteLine("1. Add an Expense");
+                Console.WriteLine("2. View Expenses and Budget");
+                Console.WriteLine("3. Remove an Expense");
+                Console.WriteLine("4. Exit");
+                Console.Write("Enter your choice: ");
+                int choice = int.Parse(Console.ReadLine());
+                switch (choice)
+                {
+                    case 1:
+                        Console.Write("Enter the expense name: ");
+                        string expenseName = Console.ReadLine();
+                        Console.Write("Enter the expense amount: ");
+                        expenseAmount = double.Parse(Console.ReadLine());
+                        if (expense1name == "")
+                        {
+                            expense1name = expenseName;
+                            expense1 = expenseAmount;
+                        }
+                        else if (expense2name == "")
+                        {
+                            expense2name = expenseName;
+                            expense2 = expenseAmount;
+                        }
+                        else if (expense3name == "")
+                        {
+                            expense3name = expenseName;
+                            expense3 = expenseAmount;
+                        }
+                        else if (expense4name == "")
+                        {
+                            expense4name = expenseName;
+                            expense4 = expenseAmount;
+                        }
+                        else if (expense5name == "")
+                        {
+                            expense5name = expenseName;
+                            expense5 = expenseAmount;
+                        }
+                        else
+                        {
+                            Console.WriteLine("You have hit the max number of expenses the program can handle.");
+                        }
+                        Console.WriteLine("Expense added successfully!");
+                        break;
+                    case 2:
+                        Console.WriteLine("\nExpenses:");
+                        Console.WriteLine($"- {expense1name}: {expense1}");
+                        Console.WriteLine($"Total Expenses: {expense1 + expense2 + expense3 + expense4 + expense5}");
+                        Console.WriteLine($"Remaining Budget: ${monthlyIncome - (expense1 + expense2 + expense3 + expense4 + expense5)}");
+                        break;
+                    case 3:
+                        Console.Write("Enter the name of the expense you want to remove: ");
+                        Console.ReadLine();
+                        break;
+                    case 4:
+                        Console.WriteLine("Goodbye!");
+                        return;
                 }
             }
         }
