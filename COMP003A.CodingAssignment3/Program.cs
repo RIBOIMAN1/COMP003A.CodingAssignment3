@@ -22,8 +22,20 @@ namespace COMP003A.CodingAssignment3
             string expense5name = "";
 
             Console.WriteLine("Welcome to the Budget Management Tool!\n");
-            Console.Write("Enter your monthly income: ");
-            double monthlyIncome = double.Parse(Console.ReadLine());
+            double monthlyIncome = 0;
+            while (true)
+            {
+                Console.Write("Enter your monthly income: ");
+                try
+                {
+                    monthlyIncome = double.Parse(Console.ReadLine());
+                    break;
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("That is an invalid input. Please enter a valid number for your monthly income.");
+                }
+            }
             while (true)
             {
                 Console.WriteLine("\nMenu:");
@@ -32,14 +44,34 @@ namespace COMP003A.CodingAssignment3
                 Console.WriteLine("3. Remove an Expense");
                 Console.WriteLine("4. Exit");
                 Console.Write("Enter your choice: ");
-                int choice = int.Parse(Console.ReadLine());
+                int choice;
+                try
+                {
+                    choice = int.Parse(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("That is an invalid input. Please enter a number between 1 and 4.");
+                    continue;
+                }
                 switch (choice)
                 {
                     case 1: // Add an expense
                         Console.Write("Enter the expense name: ");
                         string expenseName = Console.ReadLine();
-                        Console.Write("Enter the expense amount: ");
-                        expenseAmount = double.Parse(Console.ReadLine());
+                        while (true)
+                        {
+                            Console.Write("Enter the expense amount: ");
+                            try
+                            {
+                                expenseAmount = double.Parse(Console.ReadLine());
+                                break;
+                            }
+                            catch (FormatException)
+                            {
+                                Console.WriteLine("That is an invalid input. Please enter a valid number for the expense amount.");
+                            }
+                        }
                         if (expense1name == "")
                         {
                             expense1name = expenseName;
@@ -82,7 +114,7 @@ namespace COMP003A.CodingAssignment3
                         Console.WriteLine($"Total Expenses: ${totalExpenses.ToString("F2")}");
                         Console.WriteLine($"Remaining Budget: ${(monthlyIncome - totalExpenses).ToString("F2")}");
                         break;
-                    case 3: //Remove an Expense
+                    case 3: // Remove an Expense
                         Console.Write("Enter the name of the expense you want to remove: ");
                         string inputtedText = Console.ReadLine();
                         if (inputtedText == expense1name)
@@ -115,9 +147,12 @@ namespace COMP003A.CodingAssignment3
                             Console.WriteLine("That expense doesn't exist.");
                         }
                         break;
-                    case 4: //Exit
+                    case 4: // Exit
                         Console.WriteLine("Goodbye!");
                         return;
+                    default:
+                        Console.WriteLine("This is an invalid input. Numbers between 1 and 4 are accepted.");
+                        break;
                 }
             }
         }
