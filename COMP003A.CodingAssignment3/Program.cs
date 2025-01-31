@@ -35,7 +35,7 @@ namespace COMP003A.CodingAssignment3
                 int choice = int.Parse(Console.ReadLine());
                 switch (choice)
                 {
-                    case 1:
+                    case 1: // Add an expense
                         Console.Write("Enter the expense name: ");
                         string expenseName = Console.ReadLine();
                         Console.Write("Enter the expense amount: ");
@@ -71,17 +71,51 @@ namespace COMP003A.CodingAssignment3
                         }
                         Console.WriteLine("Expense added successfully!");
                         break;
-                    case 2:
+                    case 2: // View Expenses and Budget
                         Console.WriteLine("\nExpenses:");
-                        Console.WriteLine($"- {expense1name}: {expense1}");
-                        Console.WriteLine($"Total Expenses: {expense1 + expense2 + expense3 + expense4 + expense5}");
-                        Console.WriteLine($"Remaining Budget: ${monthlyIncome - (expense1 + expense2 + expense3 + expense4 + expense5)}");
+                        Console.WriteLine($"- {expense1name}: ${expense1.ToString("F2")}");
+                        Console.WriteLine($"- {expense2name}: ${expense2.ToString("F2")}");
+                        Console.WriteLine($"- {expense3name}: ${expense3.ToString("F2")}");
+                        Console.WriteLine($"- {expense4name}: ${expense4.ToString("F2")}");
+                        Console.WriteLine($"- {expense5name}: ${expense5.ToString("F2")}");
+                        double totalExpenses = expense1 + expense2 + expense3 + expense4 + expense5;
+                        Console.WriteLine($"Total Expenses: ${totalExpenses.ToString("F2")}");
+                        Console.WriteLine($"Remaining Budget: ${(monthlyIncome - totalExpenses).ToString("F2")}");
                         break;
-                    case 3:
+                    case 3: //Remove an Expense
                         Console.Write("Enter the name of the expense you want to remove: ");
-                        Console.ReadLine();
+                        string inputtedText = Console.ReadLine();
+                        if (inputtedText == expense1name)
+                        {
+                            expense1 = 0;
+                            expense1name = "";
+                        }
+                        else if (inputtedText == expense2name)
+                        {
+                            expense2 = 0;
+                            expense2name = "";
+                        }
+                        else if (inputtedText == expense3name)
+                        {
+                            expense3 = 0;
+                            expense3name = "";
+                        }
+                        else if (inputtedText == expense4name)
+                        {
+                            expense4 = 0;
+                            expense4name = "";
+                        }
+                        else if (inputtedText == expense5name)
+                        {
+                            expense5 = 0;
+                            expense5name = "";
+                        }
+                        else
+                        {
+                            Console.WriteLine("That expense doesn't exist.");
+                        }
                         break;
-                    case 4:
+                    case 4: //Exit
                         Console.WriteLine("Goodbye!");
                         return;
                 }
